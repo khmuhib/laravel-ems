@@ -16,8 +16,8 @@
             <form action="" method="POST">
                 @csrf
                 <div class="form-group">
-                    <label>Category Name</label>
-                    <input type="text" class="form-control" placeholder="Enter Product Category Name" name="title">
+                    <label>Department Name</label>
+                    <input type="text" class="form-control" placeholder="Enter Department Name" name="name">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

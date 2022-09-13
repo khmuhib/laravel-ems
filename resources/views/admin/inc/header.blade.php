@@ -22,6 +22,7 @@
 
     <!-- Custom styles for this page -->
     <link href="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet">
 
 </head>
 

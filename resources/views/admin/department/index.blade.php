@@ -25,32 +25,31 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Category Name</th>
+                                <th>Department Name</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>ID</th>
-                                <th>Name</th>
+                                <th>Department Name</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                                <tr>
-                                    <td>01</td>
-                                    <td>fdsfsd</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary"><i class="fa fa-eye"></i></a>
-                                        <a href="" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-                                        <form action="" method="POST" class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger" type="submit"><i
-                                                    class="fa fa-trash"></i></button>
-                                        </form>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>01</td>
+                                <td>fdsfsd</td>
+                                <td>
+                                    <a href="#" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+                                    <a href="" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                                    <form action="" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
