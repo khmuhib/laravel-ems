@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Skill;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class SkillController extends Controller
 {
@@ -14,7 +15,8 @@ class SkillController extends Controller
      */
     public function index()
     {
-        //
+        $skills = Skill::all();
+        return view('admin.skill.index', compact('skills'));
     }
 
     /**
@@ -24,7 +26,7 @@ class SkillController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.skill.create');
     }
 
     /**
@@ -35,7 +37,12 @@ class SkillController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $skills = $request->all();
+        if(Skill::create($skills)){
+            Session::flash('message', 'Skills Added Successfully');
+        }
+
+        return redirect()->route('skill.index');
     }
 
     /**
@@ -57,7 +64,7 @@ class SkillController extends Controller
      */
     public function edit(Skill $skill)
     {
-        //
+        return view('admin.skill.edit', compact('skill'));
     }
 
     /**
@@ -69,7 +76,14 @@ class SkillController extends Controller
      */
     public function update(Request $request, Skill $skill)
     {
-        //
+        $skill->name = $request->name;
+        //$department = $request->all();
+
+        if (!$skill->save()){
+            return redirect()-back();
+        }else {
+            return redirect()->route('skill.index')->with('message', 'Skill Updated');
+        }
     }
 
     /**
@@ -80,6 +94,8 @@ class SkillController extends Controller
      */
     public function destroy(Skill $skill)
     {
-        //
+        $skill->delete();
+
+        return redirect()->route('skill.index')->with('message', 'Skill Deleted');
     }
 }
