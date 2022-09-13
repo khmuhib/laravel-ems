@@ -30,7 +30,7 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 
-Route::resource('admin/dashboard', DashboardController::class);
+Route::resource('dashboard', DashboardController::class);
 Route::resource('department', DepartmentController::class);
 Route::resource('designation', DesignationController::class);
 Route::resource('employee', EmployeeController::class);

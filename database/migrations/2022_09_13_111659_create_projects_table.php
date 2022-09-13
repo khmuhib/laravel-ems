@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 100)->nullable();
+            $table->longText('description', 500)->nullable();
+            $table->integer('budget')->nullable();
+            $table->date('starting_date')->nullable();
+            $table->date('submission_date')->nullable();
+            $table->tinyInteger('status')->nullable('0');
             $table->timestamps();
         });
     }
