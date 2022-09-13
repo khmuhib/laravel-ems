@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Designation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class DesignationController extends Controller
 {
@@ -14,7 +15,8 @@ class DesignationController extends Controller
      */
     public function index()
     {
-        //
+        $designations = Designation::all();
+        return view('admin.designation.index', compact('designations'));
     }
 
     /**
@@ -24,7 +26,7 @@ class DesignationController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.designation.create');
     }
 
     /**
@@ -35,7 +37,13 @@ class DesignationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $designations = $request->all();
+        if(Designation::create($designations)){
+            Session::flash('message', 'Designation Added Successfully');
+        }
+
+        return redirect()->route('designation.index');
+
     }
 
     /**
@@ -57,7 +65,7 @@ class DesignationController extends Controller
      */
     public function edit(Designation $designation)
     {
-        //
+        return view('admin.designation.edit', compact('designation'));
     }
 
     /**
@@ -69,7 +77,14 @@ class DesignationController extends Controller
      */
     public function update(Request $request, Designation $designation)
     {
-        //
+        $designation->designation_name = $request->designation_name;
+        //$department = $request->all();
+
+        if (!$designation->save()){
+            return redirect()-back();
+        }else {
+            return redirect()->route('designation.index')->with('message', 'Designation Updated');
+        }
     }
 
     /**
@@ -80,6 +95,8 @@ class DesignationController extends Controller
      */
     public function destroy(Designation $designation)
     {
-        //
+        $designation->delete();
+
+        return redirect()->route('designation.index')->with('message', 'Designation Deleted');
     }
 }

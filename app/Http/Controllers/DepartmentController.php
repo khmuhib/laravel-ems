@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class DepartmentController extends Controller
 {
@@ -14,7 +15,8 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        return view('admin.department.index');
+        $departments = Department::all();
+        return view('admin.department.index', compact('departments'));
     }
 
     /**
@@ -35,7 +37,12 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $department = $request->all();
+        if(Department::create($department)){
+            Session::flash('message', 'Department Added Successfully');
+        }
+
+        return redirect()->route('department.index');
     }
 
     /**
@@ -57,7 +64,7 @@ class DepartmentController extends Controller
      */
     public function edit(Department $department)
     {
-        return view('admin.department.edit');
+        return view('admin.department.edit', compact('department'));
     }
 
     /**
@@ -69,7 +76,15 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, Department $department)
     {
-        //
+        $department->name = $request->name;
+        $department->status = $request->status;
+        //$department = $request->all();
+
+        if (!$department->save()){
+            return redirect()-back();
+        }else {
+            return redirect()->route('department.index')->with('message', 'Department Updated');
+        }
     }
 
     /**
@@ -80,6 +95,9 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        //
+
+        $department->delete();
+
+        return redirect()->route('department.index')->with('message', 'Department Deleted');
     }
 }
