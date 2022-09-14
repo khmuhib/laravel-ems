@@ -23,4 +23,9 @@ class Employee extends Model
         'department_id',
         'designation_id',
     ];
+
+    public function skills()
+    {
+        return $this->belongsToMany(Skill::class);
+    }
 }

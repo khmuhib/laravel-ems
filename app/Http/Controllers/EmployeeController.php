@@ -22,6 +22,8 @@ class EmployeeController extends Controller
         $employees = Employee::all();
         $departments = Department::all();
         $designations = Designation::all();
+        //$employee = Employee::find(5);
+        //dd($employee->skills());
         return view('admin.employee.index', compact('employees', 'departments', 'designations'));
     }
 
@@ -78,7 +80,7 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-        //
+        //return dd($employee->skills);
     }
 
     /**

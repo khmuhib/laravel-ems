@@ -12,4 +12,11 @@ class Skill extends Model
     protected $fillable = [
         'name'
     ];
+
+    
+
+    public function employees()
+    {
+        return $this->belongsToMany(Employee::class);
+    }
 }
