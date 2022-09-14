@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('budget')->nullable();
             $table->date('starting_date')->nullable();
             $table->date('submission_date')->nullable();
-            $table->tinyInteger('status')->nullable('0');
+            $table->tinyInteger('status')->default('0');
             $table->timestamps();
         });
     }

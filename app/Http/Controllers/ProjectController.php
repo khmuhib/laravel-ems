@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ProjectController extends Controller
 {
@@ -14,7 +15,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $projects = Project::all();
+        return view('admin.project.index', compact('projects'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.project.create');
     }
 
     /**
@@ -35,7 +37,12 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $projects = $request->all();
+        if(Project::create($projects)){
+            Session::flash('message', 'Project Added Successfully');
+        }
+
+        return redirect()->route('project.index');
     }
 
     /**
@@ -57,7 +64,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('admin.project.edit', compact('project'));
     }
 
     /**
@@ -69,7 +76,19 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $project->name = $request->name;
+        $project->description = $request->description;
+        $project->budget = $request->budget;
+        $project->starting_date = $request->starting_date;
+        $project->submission_date = $request->submission_date;
+        $project->status = $request->status;
+        //$department = $request->all();
+
+        if (!$project->save()){
+            return redirect()-back();
+        }else {
+            return redirect()->route('project.index')->with('message', 'Project Updated');
+        }
     }
 
     /**
@@ -80,6 +99,9 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+
+        $project->delete();
+
+        return redirect()->route('project.index')->with('message', 'Project Deleted');
     }
 }
