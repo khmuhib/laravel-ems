@@ -73,7 +73,7 @@
                                 <td><img src="{{ asset('uploads/admin/img/' . $employee->img) }}"
                                     alt="dasda" height="50" width="50"></td>
                                 <td>
-                                    <a href="#" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+                                    <a href="{{ route('employee.show', $employee) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a>
                                     <a href="{{ route('employee.edit', $employee) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                                     <form action="{{ route('employee.destroy', $employee) }}" method="POST" class="d-inline">
                                         @csrf
@@ -83,7 +83,7 @@
                                     </form>
                                 </td>
                             </tr>
-                                
+
                             @endforeach
                         </tbody>
                     </table>

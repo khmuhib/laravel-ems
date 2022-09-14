@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('employee_skills', function (Blueprint $table) {
+        Schema::create('employee_skill', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('employee_id')->constrained();
-            $table->foreignId('skill_id')->constrained();
+            $table->tinyInteger('employee_id')->nullable();
+            $table->tinyInteger('skill_id')->nullable();
             // $table->integer('employee_id')->unsigned();
             // $table->integer('skill_id')->unsigned();
             // $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');

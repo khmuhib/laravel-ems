@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Skill;
+use App\Models\Employee;
 use App\Models\Department;
 use App\Models\Designation;
-use App\Models\Employee;
+use App\Models\EmployeeSkill;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
 
 class EmployeeController extends Controller
 {
@@ -36,7 +39,8 @@ class EmployeeController extends Controller
     {
         $departments = Department::all();
         $designations = Designation::all();
-        return view('admin.employee.create', compact('departments', 'designations'));
+        $skills = Skill::all();
+        return view('admin.employee.create', compact('departments', 'designations', 'skills'));
     }
 
     /**
@@ -60,6 +64,8 @@ class EmployeeController extends Controller
         $employee->designation_id = $request->designation_id;
         $employee->department_id = $request->department_id;
 
+        //dd($request);
+
         if ($request->hasfile('img')) {
             $file = $request->file('img');
             $extention = $file->getClientOriginalExtension();
@@ -68,6 +74,23 @@ class EmployeeController extends Controller
             $employee->img = $filename;
         }
         $employee->save();
+
+        $data = $request->skill;
+
+        //dd($count);
+
+
+
+        foreach ($data as $main => $row) {
+
+
+            $input1 = new EmployeeSkill();
+            $input1->employee_id = $employee->id;
+            $input1->skill_id = $request->skill[$main];
+
+
+            $input1->save();
+        }
 
         return redirect()->route('employee.index')->with('message', 'Employee Data Added Successfully');
     }
@@ -80,7 +103,7 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-        //return dd($employee->skills);
+        return view('admin.employee.view', compact('employee'));
     }
 
     /**
@@ -119,23 +142,22 @@ class EmployeeController extends Controller
         $employee->department_id = $request->department_id;
         //$employee->img = $request->img;
         //return dd($employee);
-        if($request->hasfile('img'))
-        {
-            $destination = 'uploads/admin/img/'.$employee->img;
-            if(File::exists($destination)){
+        if ($request->hasfile('img')) {
+            $destination = 'uploads/admin/img/' . $employee->img;
+            if (File::exists($destination)) {
                 File::delete($destination);
             }
             $file = $request->file('img');
             $extention = $file->getClientOriginalExtension();
-            $filename = time().rand(1000, 9999).'.'.$extention;
+            $filename = time() . rand(1000, 9999) . '.' . $extention;
             $file->move('uploads/admin/img', $filename);
             $employee->img = $filename;
         }
 
-        if (!$employee->save()){
-            return redirect()-back();
-        }else {
-            return redirect()->route('employee.index')->with('message','Employee Data Updated Successfully');
+        if (!$employee->save()) {
+            return redirect() - back();
+        } else {
+            return redirect()->route('employee.index')->with('message', 'Employee Data Updated Successfully');
         }
         //$employee->update();
     }

@@ -22,6 +22,7 @@ class Employee extends Model
         'img',
         'department_id',
         'designation_id',
+        'skill',
     ];
 
     public function skills()

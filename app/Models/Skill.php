@@ -13,10 +13,10 @@ class Skill extends Model
         'name'
     ];
 
-    
 
-    public function employees()
-    {
-        return $this->belongsToMany(Employee::class);
-    }
+
+    // public function employees()
+    // {
+    //     return $this->belongsToMany(Employee::class);
+    // }
 }
