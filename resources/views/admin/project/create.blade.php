@@ -35,6 +35,27 @@
                     <label>Project Submission date</label>
                     <input type="date" class="form-control" placeholder="Enter Product Submission date" name="submission_date">
                 </div>
+
+
+
+                <div class="row my-3">
+                    <div class="col">
+                        <select class="form-select form-control" aria-label="Default select example" name="employee[]" multiple>
+                            <option selected>Select Employee</option>
+                            @foreach ($employees as $employee)
+                            <option value="{{$employee->id}}">{{$employee->name}}</option>
+                            @endforeach>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select class="form-select form-control" aria-label="Default select example" name="role[]" multiple>
+                            <option selected>Select Role</option>
+                            @foreach ($roles as $role)
+                            <option value="{{$role->id}}">{{$role->name}}</option>
+                            @endforeach>
+                        </select>
+                    </div>
+                </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
 

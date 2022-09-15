@@ -9,15 +9,15 @@
 
     <div class="card shadow mb-4">
         <div class="card-header d-flex justify-content-between pt-4">
-            <h5 class="card-title">Add Role</h5>
-            <a href="" class="btn btn-primary">Show Role</a>
+            <h5 class="card-title">Role Add</h5>
+            <a href="{{ route('role.index') }}" class="btn btn-primary">Show Role</a>
         </div>
         <div class="card-body">
-            <form action="" method="POST">
+            <form action="{{ route('role.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
-                    <label>Category Name</label>
-                    <input type="text" class="form-control" placeholder="Enter Product Category Name" name="title">
+                    <label>Role Name</label>
+                    <input type="text" class="form-control" placeholder="Enter Project Role Name" name="name">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

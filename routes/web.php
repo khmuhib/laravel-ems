@@ -5,6 +5,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SkillController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,3 +37,4 @@ Route::resource('designation', DesignationController::class);
 Route::resource('employee', EmployeeController::class);
 Route::resource('skill', SkillController::class);
 Route::resource('project', ProjectController::class);
+Route::resource('role', RoleController::class);

@@ -103,7 +103,9 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-        return view('admin.employee.view', compact('employee'));
+        $employee_skills = EmployeeSkill::all();
+        $skills = Skill::all();
+        return view('admin.employee.view', compact('employee', 'employee_skills', 'skills'));
     }
 
     /**
@@ -116,7 +118,8 @@ class EmployeeController extends Controller
     {
         $departments = Department::all();
         $designations = Designation::all();
-        return view('admin.employee.edit', compact('employee', 'departments', 'designations'));
+        $skills = Skill::all();
+        return view('admin.employee.edit', compact('employee', 'departments', 'designations', 'skills'));
     }
 
     /**
@@ -154,11 +157,33 @@ class EmployeeController extends Controller
             $employee->img = $filename;
         }
 
-        if (!$employee->save()) {
-            return redirect() - back();
-        } else {
-            return redirect()->route('employee.index')->with('message', 'Employee Data Updated Successfully');
-        }
+        $employee->update();
+
+        // $data = $request->skill;
+
+        // //dd($count);
+
+
+
+        // foreach ($data as $main => $row) {
+
+
+        //     $input1 = new EmployeeSkill();
+        //     $input1->employee_id = $employee->id;
+        //     $input1->skill_id = $request->skill[$main];
+
+
+        //     $input1->save();
+        // }
+
+
+        return redirect()->route('employee.index')->with('message', 'Employee Data Updated Successfully');
+
+        // if (!$employee->save()) {
+        //     return redirect() - back();
+        // } else {
+        //     return redirect()->route('employee.index')->with('message', 'Employee Data Updated Successfully');
+        // }
         //$employee->update();
     }
 

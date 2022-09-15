@@ -100,6 +100,21 @@
         </div>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#role"
+            aria-expanded="true" aria-controls="role">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Role In Project</span>
+        </a>
+        <div id="role" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Projects Role:</h6>
+                <a class="collapse-item" href="{{ route('role.index') }}">Role List</a>
+                <a class="collapse-item" href="{{ route('role.create') }}">Role Create</a>
+            </div>
+        </div>
+    </li>
+
 {{--     <!-- Divider -->
     <hr class="sidebar-divider">
 

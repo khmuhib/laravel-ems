@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
+use App\Models\EmployeeProject;
 use App\Models\Project;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -26,7 +29,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.project.create');
+        $employees = Employee::all();
+        $roles = Role::all();
+        return view('admin.project.create', compact('employees', 'roles'));
     }
 
     /**
@@ -37,12 +42,43 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $projects = $request->all();
-        if(Project::create($projects)){
-            Session::flash('message', 'Project Added Successfully');
+
+        $project = new Project;
+        $project->name = $request->name;
+        $project->description = $request->description;
+        $project->budget = $request->budget;
+        $project->starting_date = $request->starting_date;
+        $project->submission_date = $request->submission_date;
+        $project->save();
+
+        $data1 = $request->employee;
+        $data2 = $request->role;
+
+        foreach ($data1 as $main => $row) {
+
+
+            $input1 = new EmployeeProject();
+            $input1->project_id = $project->id;
+            $input1->employee_id = $request->employee[$main];
+            //$input1->role_id = $request->role[$main];
+
+
+            $input1->save();
         }
 
-        return redirect()->route('project.index');
+        foreach ($data2 as $main => $row) {
+
+
+            $input2 = new EmployeeProject();
+            //$input2->project_id = $project->id;
+            //$input2->employee_id = $request->employee[$main];
+            $input1->role_id = $request->role[$main];
+
+
+            $input1->save();
+        }
+
+        return redirect()->route('project.index')->with('message', 'Project Data Added Successfully');
     }
 
     /**
@@ -64,7 +100,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.project.edit', compact('project'));
+        $employees = Employee::all();
+        $roles = Role::all();
+        return view('admin.project.edit', compact('project', 'roles', 'employees'));
     }
 
     /**

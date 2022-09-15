@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('employee_skill', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('employee_id')->nullable();
-            $table->tinyInteger('skill_id')->nullable();
+            $table->string('name')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employee_skills');
+        Schema::dropIfExists('roles');
     }
 };

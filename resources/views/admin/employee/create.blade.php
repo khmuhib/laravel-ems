@@ -51,14 +51,6 @@
                             @endforeach>
                         </select>
                     </div>
-                    <div class="col">
-                        <select class="form-select form-control" aria-label="Default select example" name="skill[]" multiple>
-                            <option selected>Select Skill</option>
-                            @foreach ($skills as $skill)
-                            <option value="{{$skill->id}}">{{$skill->name}}</option>
-                            @endforeach>
-                        </select>
-                    </div>
                 </div>
                 <div class="row my-3">
                     <div class="col">
@@ -82,6 +74,17 @@
                 <div class="row my-3">
                     <div class="col">
                       <textarea class="form-control" placeholder="Enter Employee Address" name="address"></textarea>
+                    </div>
+                </div>
+
+                <div class="row my-3">
+                    <div class="col">
+                        <select class="form-select form-control" aria-label="Default select example" name="skill[]" multiple>
+                            <option selected>Select Skill</option>
+                            @foreach ($skills as $skill)
+                            <option value="{{$skill->id}}">{{$skill->name}}</option>
+                            @endforeach>
+                        </select>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>

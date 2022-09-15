@@ -7,15 +7,22 @@
     <title>Document</title>
 </head>
 <body>
+
     <div class="">
-        <h3>Kh Muhib</h3>
+        <h3>{{$employee->name}}</h3>
+
 
         <ul>
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JAVA</li>
+            @foreach ($employee_skills as $employee_skill)
+                @if ($employee->id == $employee_skill->employee_id)
+                    @foreach ($skills as $skill)
+                        @if ($skill->id == $employee_skill->skill_id)
+                            <li>{{$skill->name}}</li>
+                        @endif
+                    @endforeach
+                @endif
+            @endforeach
         </ul>
     </div>
-
 </body>
 </html>
