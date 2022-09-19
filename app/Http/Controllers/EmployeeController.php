@@ -6,7 +6,9 @@ use App\Models\Skill;
 use App\Models\Employee;
 use App\Models\Department;
 use App\Models\Designation;
+use App\Models\EmployeeProject;
 use App\Models\EmployeeSkill;
+use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,12 +24,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::all();
-        $departments = Department::all();
-        $designations = Designation::all();
-        //$employee = Employee::find(5);
-        //dd($employee->skills());
-        return view('admin.employee.index', compact('employees', 'departments', 'designations'));
+
+        $employees = Employee::orderBy('id','desc')->with('designation','department','employeeskills')->get();
+        return view('admin.employee.index', compact('employees'));
     }
 
     /**
@@ -103,9 +102,12 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-        $employee_skills = EmployeeSkill::all();
+        $employee_skills = EmployeeSkill::orderBy('id','desc')->get();
         $skills = Skill::all();
-        return view('admin.employee.view', compact('employee', 'employee_skills', 'skills'));
+        $departments = Department::all();
+        $employee_projects = EmployeeProject::all();
+        $projects = Project::all();
+        return view('admin.employee.view', compact('employee', 'employee_skills', 'skills', 'departments', 'employee_projects', 'projects'));
     }
 
     /**
@@ -132,6 +134,8 @@ class EmployeeController extends Controller
     public function update(Request $request, Employee $employee)
     {
         //$employee = Employee::find($employee);
+
+
         $employee->name = $request->name;
         $employee->email = $request->email;
         $employee->phone = $request->phone;
@@ -143,7 +147,9 @@ class EmployeeController extends Controller
         $employee->address = $request->address;
         $employee->designation_id = $request->designation_id;
         $employee->department_id = $request->department_id;
-        //$employee->img = $request->img;
+        $employee->img = $request->img;
+
+
         //return dd($employee);
         if ($request->hasfile('img')) {
             $destination = 'uploads/admin/img/' . $employee->img;
@@ -157,34 +163,31 @@ class EmployeeController extends Controller
             $employee->img = $filename;
         }
 
-        $employee->update();
-
-        // $data = $request->skill;
-
-        // //dd($count);
 
 
 
-        // foreach ($data as $main => $row) {
 
 
-        //     $input1 = new EmployeeSkill();
-        //     $input1->employee_id = $employee->id;
-        //     $input1->skill_id = $request->skill[$main];
+
+       if( $employee->update()){
+          $skills = EmployeeSkill::where('employee_id',$employee->id)->get();
+
+          foreach($skills as $skill){
+            $skills = EmployeeSkill::find($skill->id);
+            $skills->delete();
+          }
 
 
-        //     $input1->save();
-        // }
 
-
+          foreach ($request->skill as $main => $row) {
+            $input1 = new EmployeeSkill();
+            $input1->employee_id = $employee->id;
+            $input1->skill_id = $request->skill[$main];
+            $input1->save();
+        }
+       };
         return redirect()->route('employee.index')->with('message', 'Employee Data Updated Successfully');
 
-        // if (!$employee->save()) {
-        //     return redirect() - back();
-        // } else {
-        //     return redirect()->route('employee.index')->with('message', 'Employee Data Updated Successfully');
-        // }
-        //$employee->update();
     }
 
     /**
@@ -195,8 +198,15 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
+        if(!empty($employee)){
+            unlink("uploads/admin/img/".$employee->img);
+        }
+        $skills = EmployeeSkill::where('employee_id',$employee->id)->get();
+        foreach($skills as $skill){
+            $skills = EmployeeSkill::find($skill->id);
+            $skills->delete();
+        }
         $employee->delete();
-
         return redirect()->route('employee.index')->with('message', 'Employee Deleted');
     }
 }

@@ -16,10 +16,10 @@ class EmployeeSkill extends Model
         'employee_id'
     ];
 
-    // public function employees()
-    // {
-    //     return $this->belongsToMany(Employee::class);
-    // }
+    public function skills()
+    {
+        return $this->belongsTo(Skill::class,'skill_id','id');
+    }
 
 
 }

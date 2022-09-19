@@ -57,18 +57,10 @@
                                 <td>{{$employee->email}}</td>
                                 <td>{{$employee->phone}}</td>
                                 <td>
-                                    @foreach ($departments as $department)
-                                        @if ($employee->department_id == $department->id)
-                                                {{$department->name}}
-                                        @endif
-                                    @endforeach
+                                  {{$employee->department->name}}
                                 </td>
                                 <td>
-                                    @foreach ($designations as $designation)
-                                        @if ($employee->designation_id == $designation->id)
-                                                {{$designation->designation_name}}
-                                        @endif
-                                    @endforeach
+                                  {{$employee->designation->designation_name}}
                                 </td>
                                 <td><img src="{{ asset('uploads/admin/img/' . $employee->img) }}"
                                     alt="dasda" height="50" width="50"></td>

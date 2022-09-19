@@ -39,7 +39,10 @@
                         <select class="form-select form-control" aria-label="Default select example" name="department_id">
                             <option selected>Select Department</option>
                             @foreach ($departments as $department)
-                            <option value="{{$department->id}}">{{$department->name}}</option>
+                            @if ($department->status == '0')
+                                <option value="{{$department->id}}">{{$department->name}}</option>
+                            @endif
+
                             @endforeach>
                         </select>
                     </div>

@@ -25,8 +25,19 @@ class Employee extends Model
         'skill',
     ];
 
-    public function skills()
+    public function employeeskills()
     {
-        return $this->belongsToMany(Skill::class);
+        return $this->hasMany(EmployeeSkill::class,'employee_id','id')->with('skills');
+    }
+
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class,'department_id','id');
+    }
+
+    public function designation()
+    {
+        return $this->belongsTo(Designation::class,'designation_id','id');
     }
 }
