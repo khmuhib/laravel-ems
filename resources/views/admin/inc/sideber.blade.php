@@ -115,6 +115,53 @@
         </div>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#bookCategory"
+            aria-expanded="true" aria-controls="bookCategory">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Book Cateogry</span>
+        </a>
+        <div id="bookCategory" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Books:</h6>
+                <a class="collapse-item" href="{{ route('admin.book.category.list') }}">Book Category List</a>
+                <a class="collapse-item" href="{{ route('admin.book.category.create') }}">Book Category Create</a>
+            </div>
+        </div>
+    </li>
+
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#books"
+            aria-expanded="true" aria-controls="books">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Books</span>
+        </a>
+        <div id="books" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Books:</h6>
+                <a class="collapse-item" href="{{ route('admin.book.list') }}">Book List</a>
+                <a class="collapse-item" href="{{ route('admin.book.create') }}">Book Create</a>
+            </div>
+        </div>
+    </li>
+
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#students"
+            aria-expanded="true" aria-controls="students">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Student</span>
+        </a>
+        <div id="students" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Student:</h6>
+                <a class="collapse-item" href="{{ route('admin.student.list') }}">Student List</a>
+                <a class="collapse-item" href="{{ route('admin.student.create') }}">Student Create</a>
+            </div>
+        </div>
+    </li>
+
 {{--     <!-- Divider -->
     <hr class="sidebar-divider">
 

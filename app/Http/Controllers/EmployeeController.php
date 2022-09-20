@@ -17,11 +17,7 @@ use Illuminate\Support\Facades\Session;
 
 class EmployeeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
 
@@ -29,11 +25,7 @@ class EmployeeController extends Controller
         return view('admin.employee.index', compact('employees'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         $departments = Department::all();
@@ -42,12 +34,7 @@ class EmployeeController extends Controller
         return view('admin.employee.create', compact('departments', 'designations', 'skills'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $employee = new Employee;
@@ -94,12 +81,7 @@ class EmployeeController extends Controller
         return redirect()->route('employee.index')->with('message', 'Employee Data Added Successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Employee  $employee
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Employee $employee)
     {
         $employee_skills = EmployeeSkill::orderBy('id','desc')->get();
@@ -110,12 +92,7 @@ class EmployeeController extends Controller
         return view('admin.employee.view', compact('employee', 'employee_skills', 'skills', 'departments', 'employee_projects', 'projects'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Employee  $employee
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Employee $employee)
     {
         $departments = Department::all();
@@ -124,13 +101,7 @@ class EmployeeController extends Controller
         return view('admin.employee.edit', compact('employee', 'departments', 'designations', 'skills'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Employee  $employee
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, Employee $employee)
     {
         //$employee = Employee::find($employee);
@@ -165,10 +136,6 @@ class EmployeeController extends Controller
 
 
 
-
-
-
-
        if( $employee->update()){
           $skills = EmployeeSkill::where('employee_id',$employee->id)->get();
 
@@ -190,12 +157,8 @@ class EmployeeController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Employee  $employee
-     * @return \Illuminate\Http\Response
-     */
+
+    
     public function destroy(Employee $employee)
     {
         if(!empty($employee)){
