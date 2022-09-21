@@ -18,6 +18,10 @@ class Book extends Model
     ];
 
     public function bookCategory () {
-        return $this->hasOne(BookCategory::class, 'category_id', 'id');
+        return $this->belongsTo(BookCategory::class,'category_id','id');
+    }
+
+    public function contributors () {
+        return $this->hasMany(Contributor::class);
     }
 }

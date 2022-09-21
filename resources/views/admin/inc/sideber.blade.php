@@ -162,6 +162,23 @@
         </div>
     </li>
 
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#contributor"
+            aria-expanded="true" aria-controls="contributor">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Contributor</span>
+        </a>
+        <div id="contributor" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Contributor:</h6>
+                <a class="collapse-item" href="{{ route('admin.contributor.list') }}">Contributor List</a>
+                <a class="collapse-item" href="{{ route('admin.contributor.create') }}">Contributor Create</a>
+            </div>
+        </div>
+    </li>
+
+
 {{--     <!-- Divider -->
     <hr class="sidebar-divider">
 

@@ -46,12 +46,12 @@
                                     <td>{{ $book->id }}</td>
                                     <td>{{ $book->name }}</td>
                                     <td>{{ $book->pages }}</td>
-                                    <td>dsad</td>
-                                    <td></td>
+                                    <td>{{$book->bookCategory->name}}</td>
+                                    {{-- <td>{{$book->bookCategory->name}}</td> --}}
                                     <td>
                                         <a href="#" class="btn btn-primary"><i class="fa fa-eye"></i></a>
-                                        <a href="" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-                                        <a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                        <a href="{{ route('admin.book.edit', ['id'=>$book->id]) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('admin.book.delete', ['id'=>$book->id]) }}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

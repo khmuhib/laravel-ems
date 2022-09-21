@@ -9,7 +9,7 @@
         <div class="card shadow mb-4">
             <div class="card-header d-flex justify-content-between pt-4">
                 <h5 class="card-title">Add Book</h5>
-                <a href="" class="btn btn-primary">Show Book</a>
+                <a href="{{ route('admin.book.list') }}" class="btn btn-primary">Show Book</a>
             </div>
             <div class="card-body">
                 <form action="{{ route('admin.book.store') }}" method="POST">
