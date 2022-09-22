@@ -25,6 +25,40 @@
     <!-- Nav Item - Pages Collapse Menu -->
 
     <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#patient" aria-expanded="true"
+            aria-controls="patient">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Patients</span>
+        </a>
+        <div id="patient" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Patients Components:</h6>
+                <a class="collapse-item" href="{{ route('admin.patient.list') }}">Patients list</a>
+                <a class="collapse-item" href="{{ route('admin.patient.create') }}">Patient create</a>
+            </div>
+        </div>
+    </li>
+
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#doctor" aria-expanded="true"
+            aria-controls="doctor">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Doctors</span>
+        </a>
+        <div id="doctor" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Doctor Components:</h6>
+                <a class="collapse-item" href="{{ route('admin.doctor.list') }}">Doctor list</a>
+                <a class="collapse-item" href="{{ route('admin.doctor.create') }}">Doctor create</a>
+            </div>
+        </div>
+    </li>
+
+
+
+
+    <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#group" aria-expanded="true"
             aria-controls="group">
             <i class="fas fa-fw fa-cog"></i>

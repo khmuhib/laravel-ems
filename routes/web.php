@@ -13,6 +13,8 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\BookCategoryController;
 use App\Http\Controllers\ContributorController;
+use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\PatientController;
 use App\Http\Controllers\StudentController;
 
 /*
@@ -72,15 +74,6 @@ Route::put('admin/contributor/delete/{id}', [ContributorController::class, 'dele
 
 
 
-
-
-
-
-
-
-
-
-
 Route::get('admin/student/list/', [StudentController::class, 'index'])->name('admin.student.list');
 Route::get('admin/student/create/', [StudentController::class, 'create'])->name('admin.student.create');
 Route::post('admin/student/store/', [StudentController::class, 'store'])->name('admin.student.store');
@@ -88,3 +81,19 @@ Route::get('admin/student/edit/{id}', [StudentController::class, 'edit'])->name(
 Route::put('admin/student/update/{id}', [StudentController::class, 'update'])->name('admin.student.update');
 Route::get('admin/student/delete/{id}', [StudentController::class, 'delete'])->name('admin.student.delete');
 
+
+
+
+Route::get('admin/doctor/list/', [DoctorController::class, 'index'])->name('admin.doctor.list');
+Route::get('admin/doctor/create/', [DoctorController::class, 'create'])->name('admin.doctor.create');
+Route::get('admin/doctor/edit/{id}', [DoctorController::class, 'edit'])->name('admin.doctor.edit');
+Route::post('admin/doctor/store/', [DoctorController::class, 'store'])->name('admin.doctor.store');
+Route::put('admin/doctor/update/{id}', [DoctorController::class, 'update'])->name('admin.doctor.update');
+Route::get('admin/doctor/delete/{id}', [DoctorController::class, 'delete'])->name('admin.doctor.delete');
+
+Route::get('admin/patient/list/', [PatientController::class, 'index'])->name('admin.patient.list');
+Route::get('admin/patient/create/', [PatientController::class, 'create'])->name('admin.patient.create');
+Route::get('admin/patient/edit/{id}', [PatientController::class, 'edit'])->name('admin.patient.edit');
+Route::post('admin/patient/store', [PatientController::class, 'store'])->name('admin.patient.store');
+Route::put('admin/patient/update/{id}', [PatientController::class, 'update'])->name('admin.patient.update');
+Route::get('admin/patient/delete/{id}', [PatientController::class, 'delete'])->name('admin.patient.delete');
