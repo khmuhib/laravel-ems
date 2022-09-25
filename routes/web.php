@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppointmentController;
 use App\Models\Student;
 use App\Models\StudentDetail;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,7 @@ use App\Http\Controllers\ContributorController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\StudentController;
+use App\Models\AappointmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,3 +99,8 @@ Route::get('admin/patient/edit/{id}', [PatientController::class, 'edit'])->name(
 Route::post('admin/patient/store', [PatientController::class, 'store'])->name('admin.patient.store');
 Route::put('admin/patient/update/{id}', [PatientController::class, 'update'])->name('admin.patient.update');
 Route::get('admin/patient/delete/{id}', [PatientController::class, 'delete'])->name('admin.patient.delete');
+
+
+Route::get('admin/appointment/list/', [AppointmentController::class, 'index'])->name('admin.appointment.list');
+Route::get('admin/appointment/create/', [AppointmentController::class, 'create'])->name('admin.appointment.create');
+Route::get('admin/appointment/edit', [AppointmentController::class, 'edit'])->name('admin.appointment.edit');
